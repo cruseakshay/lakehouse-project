@@ -1,0 +1,4 @@
+# Astro Runtime includes the following pre-installed providers packages: https://www.astronomer.io/docs/astro/runtime-image-architecture#provider-packages
+dbt-trino==1.9.3
+dbt-core==1.10.10
+astronomer-cosmos==1.10.2

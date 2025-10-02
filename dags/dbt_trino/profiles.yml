@@ -1,0 +1,12 @@
+dbt_trino:
+  outputs:
+    trino_output:
+      type: trino
+      method: none
+      user: batman
+      database: lakehouse
+      host: host.docker.internal
+      port: 8081
+      schema: staging
+      threads: 1
+  target: trino_output
