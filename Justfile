@@ -13,10 +13,8 @@ default:
 
 # Start all services (equivalent to start-all.sh)
 start:
-    @echo "🚀 Starting Airflow services..."
+    @echo "🚀 Starting All services..."
     {{ ASTRO_CLI }} dev start
-    @echo "🗄️ Starting MinIO and Nessie services..."
-    {{ DOCKER_COMPOSE }} -f docker-compose-override.yml up -d
     @echo "⏳ Waiting for services to be ready..."
     @sleep 15
     @echo "🏗️ Initializing Trino schemas..."
@@ -28,7 +26,6 @@ start:
 stop:
     @echo "🛑 Stopping all services..."
     {{ ASTRO_CLI }} dev stop
-    {{ DOCKER_COMPOSE }} -f docker-compose-override.yml down
     @echo "✅ All services stopped!"
 
 # Restart all services
@@ -42,16 +39,6 @@ status:
     @echo "- MinIO Console: http://localhost:9001 (admin/password)"
     @echo "- MinIO API: http://localhost:9000"
     @echo "- Nessie Catalog: http://localhost:19120"
-
-# Start only Airflow services
-airflow-start:
-    @echo "🚀 Starting Airflow services..."
-    {{ ASTRO_CLI }} dev start
-
-# Stop only Airflow services
-airflow-stop:
-    @echo "🛑 Stopping Airflow services..."
-    {{ ASTRO_CLI }} dev stop
 
 # Start only data services (MinIO + Nessie + Trino)
 data-start:
@@ -110,7 +97,6 @@ clean:
     @echo "🧹 Cleaning up all resources..."
     {{ ASTRO_CLI }} dev stop
     {{ ASTRO_CLI }} dev kill
-    {{ DOCKER_COMPOSE }} -f docker-compose-override.yml down -v
 
 
 # Check service health
